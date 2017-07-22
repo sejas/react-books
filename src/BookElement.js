@@ -19,7 +19,7 @@ class BookElement extends Component {
     return (
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks && book.imageLinks.smallThumbnail}")` }}></div>
+            <div className="book-cover" style={{ backgroundImage: `url("${book.imageLinks && book.imageLinks.smallThumbnail}")` }}></div>
             <div className="book-shelf-changer">
               <select value={book.shelf || 'none'} onChange={(e)=>onClickChangeShelf(book, e.target.value, e)}>
                 <option value="move" disabled>Move to...</option>

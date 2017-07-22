@@ -37,23 +37,28 @@ class BookSearch extends Component {
     })
     this.setState(state => ({booksFound}))
   }
+
+  timeOutToSearch = null
   updateQuery = (query) => {
+    clearTimeout(this.timeOutToSearch);
     query = query.trim()
     this.setState({ query })
-    if (query.length > 0) {
-      this.textSearching = this.texts.searching
-      BooksAPI.search(query, 20).then((booksFound)=>{
-        if (Array.isArray(booksFound)) {
-          booksFound = booksFound.sort(sortBy('title'))
-          this.textSearching = ''
-          this.updateBooks(booksFound)
-        }else{
-          //Books nound in the server
-          this.textSearching = this.texts.notFound
-          this.setState(state => ({booksFound: []}))
-        }
-      })
-    }
+    this.timeOutToSearch = setTimeout(()=>{
+      if (query.length > 0) {
+        this.textSearching = this.texts.searching
+        BooksAPI.search(query, 20).then((booksFound)=>{
+          if (Array.isArray(booksFound)) {
+            booksFound = booksFound.sort(sortBy('title'))
+            this.textSearching = ''
+            this.updateBooks(booksFound)
+          }else{
+            //Books nound in the server
+            this.textSearching = this.texts.notFound
+            this.setState(state => ({booksFound: []}))
+          }
+        })
+      }
+    },350)
   }
 
   clearQuery = () => {
