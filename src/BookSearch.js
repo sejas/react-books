@@ -23,6 +23,7 @@ class BookSearch extends Component {
     if (query.length >= 3) {
       console.log('searching query +3: ',query)
       BooksAPI.search(query, 20).then((books)=>{
+        console.log('books',books)
         if (Array.isArray(books.sort(sortBy('title')))) {
           this.setState(state => ({books}))
         }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import sortBy from 'sort-by'
 import BookShelf from './BookShelf'
 import * as BookConstants from './BookConstants'
 
@@ -20,6 +21,8 @@ class BooksList extends Component {
     }
   }
 
+  showingShelfStates = BookConstants.states.filter((s)=>(s.showAsShelfSection))
+
   render() {
     const { books, onClickChangeShelf } = this.props
     return (
@@ -29,14 +32,13 @@ class BooksList extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {BookConstants.states.map((state)=>(
+            {this.showingShelfStates.map((state)=>(
                 <BookShelf key={state.key}
                   titleShelf={state.title}
-                  books={books.filter(this.filterBooks(state.key))}
+                  books={books.filter(this.filterBooks(state.key)).sort(sortBy('title'))}
                   onClickChangeShelf={onClickChangeShelf}
                   />
              ))}
-            }
           </div>
         </div>
         <div className="open-search">

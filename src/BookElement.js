@@ -54,7 +54,6 @@ class BookElement extends Component {
                 {BookConstants.states.map((state)=> (
                   <option key={state.key} value={state.key}>{state.title}</option>
                 ))}
-                <option value="none">None</option>
               </select>
             </div>
           </div>
