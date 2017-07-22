@@ -40,7 +40,7 @@ class BookSearch extends Component {
   updateQuery = (query) => {
     query = query.trim()
     this.setState({ query })
-    if (query.length >= 3) {
+    if (query.length > 0) {
       this.textSearching = this.texts.searching
       BooksAPI.search(query, 20).then((booksFound)=>{
         if (Array.isArray(booksFound)) {
