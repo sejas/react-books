@@ -19,7 +19,7 @@ class BooksApp extends Component {
   }
 
   onClickChangeShelf = (book, stateKey, event) => {
-    if (stateKey != book.shelf && BookConstants.states.map((s)=>s.key).indexOf(stateKey) >= 0) {
+    if (stateKey !== book.shelf && BookConstants.states.map((s)=>s.key).indexOf(stateKey) >= 0) {
       let bookToChange = this.state.books.find((b,index)=> b.id === book.id)
       if (bookToChange) {
         BooksAPI.update(book, stateKey)
@@ -46,6 +46,7 @@ class BooksApp extends Component {
         )}/>
         <Route path='/search' render={({ history }) => (
           <BookSearch
+            onClickChangeShelf={this.onClickChangeShelf}
           />
         )}/>
       </div>
