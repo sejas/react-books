@@ -6,6 +6,7 @@ import BookShelf from './BookShelf'
 import * as BookConstants from './BookConstants'
 
 class BooksList extends Component {
+  
   static propTypes = {
     books: PropTypes.array.isRequired,
     onClickChangeShelf: PropTypes.func.isRequired,
@@ -50,5 +51,6 @@ class BooksList extends Component {
       </div>
     )
   }
+  
 }
 export default BooksList

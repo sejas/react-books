@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import BookElement from './BookElement'
 
 class BookShelf extends Component {
+  
   static propTypes = {
     titleShelf: PropTypes.string.isRequired,
     books: PropTypes.array.isRequired,
@@ -34,5 +35,6 @@ class BookShelf extends Component {
 
     )
   }
+  
 }
 export default BookShelf
